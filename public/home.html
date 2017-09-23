@@ -1,0 +1,74 @@
+<div class="padding-inner">
+  <div>
+    <p>Number of Traits: {{ app.traitsNum }}</p>
+  </div>
+
+  <md-content flex layout-padding>
+    <form name = 'punnettForm'>
+
+      <h3>Parent 1:</h3>
+      <h4>Trait Alleles:</h4>
+      <md-input-container class="md-input-has-value allele-input-container">
+        <input type="text" name="allele1" ng-model="app.parent1.traits[0].alleles[0]">
+      </md-input-container>
+
+      <md-input-container class="md-input-has-value allele-input-container">
+        <input type="text" name="allele2" ng-model="app.parent1.traits[0].alleles[1]">
+      </md-input-container>
+
+      <h3>Parent 2:</h3>
+      <h4>Trait Alleles:</h4>
+      <md-input-container class="md-input-has-value allele-input-container">
+        <input type="text" name="allele1" ng-model="app.parent2.traits[0].alleles[0]">
+      </md-input-container>
+
+      <md-input-container class="md-input-has-value allele-input-container">
+        <input type="text" name="allele2" ng-model="app.parent2.traits[0].alleles[1]">
+      </md-input-container>
+
+      <md-button type="submit" class="btn btn-primary" ng-click="app.assignAlleles()">Submit</md-button>
+
+    </form>
+
+
+<div class="gridListdemoBasicUsage">
+    <h3>Phenotypes:</h3>
+    <md-grid-list md-cols="2" md-row-height="1:1" md-gutter="10px" >
+
+        <md-grid-tile class="gray" md-colspan="1" md-rowspan="1">
+          <div>
+            <h1>{{ app.position1 }}</h1>
+          </div>
+        </md-grid-tile>
+
+        <md-grid-tile class="green" md-colspan="1" md-rowspan="1">
+          <div>
+            <h1>{{ app.position2 }}</h1>
+          </div>
+        </md-grid-tile>
+
+        <md-grid-tile class="yellow" md-colspan="1" md-rowspan="1">
+          <div>
+            <h1>{{ app.position3 }}</h1>
+          </div>
+        </md-grid-tile>
+
+        <md-grid-tile class="gray" md-colspan="1" md-rowspan="1">
+          <div>
+            <h1>{{ app.position4 }}</h1>
+          </div>
+        </md-grid-tile>
+
+      </md-grid-list>
+    </div>
+
+
+
+
+
+
+
+
+  </md-content>
+</form>
+</div>

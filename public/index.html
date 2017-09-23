@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Material Starter</title>
+
+  <base href="/" />
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+  <link rel='stylesheet' href='//fonts.googleapis.com/css?family=Open+Sans:400,700'>
+
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/scripts/angular-material/angular-material.min.css"/>
+
+  <link rel="stylesheet" href="./main.css"/>
+
+
+</head>
+
+<body ng-app="materialApp" layout="row" ng-controller="appCtrl as app">
+
+    <md-sidenav class="md-sidenav-left md-whiteframe-4dp ng-cloak" md-component-id="left">
+
+        <md-toolbar class="md-toolbar-tools" layout="row" layout-align="center-center">
+
+            <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Close User Menu">
+              <md-icon md-font-icon="fa-bars" class="md-menu-text-color fa s24"></md-icon>
+            </md-button>
+
+            <h3 class="md-toolbar-tools">Menu</h3>
+
+        </md-toolbar>
+
+        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/">
+            <span>Home</span>
+        </md-list-item>
+        <md-divider></md-divider>
+
+        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/">
+            <span>Facts</span>
+        </md-list-item>
+        <md-divider></md-divider>
+
+        <md-list-item layout="row" ng-click="app.toggleLeft()" href="/">
+            <span>Examples</span>
+        </md-list-item>
+
+    </md-sidenav>
+
+
+<div style="width:100%" class="ng-cloak">
+    <md-toolbar class="toolbar">
+        <div layout="row" layout-align="center center" layout-wrap class="md-toolbar-tools">
+
+            <md-button ng-click="app.toggleLeft()" class="md-icon-button" aria-label="Main Menu">
+              <md-icon md-font-icon="fa-bars" class="md-menu-text-color fa s24"></md-icon>
+            </md-button>
+
+            <span flex></span>
+
+        </div>
+
+        <div layout="row" layout-align="center center" layout-wrap>
+            <h1 flex="90" class="md-headline">{{ title }}</h1>
+        </div>
+
+    </md-toolbar>
+
+    <div ui-view></div>
+
+</div>
+
+<script src="/scripts/angular/angular.min.js"></script>
+<script src="/scripts/angular-animate/angular-animate.min.js"></script>
+<script src="/scripts/angular-aria/angular-aria.min.js"></script>
+<script src="/scripts/angular-material/angular-material.min.js"></script>
+
+<script type="text/javascript" src="/scripts/angular-ui-router/release/angular-ui-router.min.js"></script>
+
+<script src="modules/cards/controllers/cardsCtrl.js"></script>
+<script src="modules/cards/services/cardsService.js"></script>
+
+<script src="modules/list/controllers/listCtrl.js"></script>
+<script src="modules/list/services/listService.js"></script>
+
+<script src="modules/tabs/controllers/tabsCtrl.js"></script>
+<script src="modules/tabs/services/tabsService.js"></script>
+
+<script src="app.controller.js"></script>
+
+<script src="app.js"></script>
+<script src="app.routes.js"></script>
+
+</body>
+</html>
