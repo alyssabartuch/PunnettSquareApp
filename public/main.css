@@ -1,16 +1,33 @@
+
+.traits-input-container {
+  width: 100px;
+  margin: auto;
+}
+
+.traits-input-container input {
+  text-align: center;
+  font-size: 1.5em;
+}
+
 .allele-input-container {
   width: 100px;
   margin: auto;
 }
+
+
 
 .allele-input-container input {
   text-align: center;
   font-size: 1.5em;
 }
 
+.gridListdemoBasicUsage {
+  justify-content: right;
+
+}
 
 .gridListdemoBasicUsage md-grid-list {
-  width: 50%;
+  width: 80%;
   margin: 8px;
  }
 
@@ -34,3 +51,27 @@
 
 .gridListdemoBasicUsage md-grid-tile {
   transition: all 400ms ease-out 50ms; }
+
+.parent1-container {
+  width: 80%;
+}
+
+.parent1-container div {
+  font-size: 2em;
+  text-align: center;
+  display: inline-block;
+  width: 49%;
+}
+
+.parent2-container {
+  width: 20%;
+}
+
+.parent2-container div {
+  font-size: 2em;
+  text-align: center;
+  padding-top: 40%;
+  padding-bottom: 40%;
+  display: block;
+
+}

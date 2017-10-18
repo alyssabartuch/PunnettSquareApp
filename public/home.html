@@ -1,65 +1,116 @@
 <div class="padding-inner">
-  <div>
-    <p>Number of Traits: {{ app.traitsNum }}</p>
-  </div>
-
   <md-content flex layout-padding>
-    <form name = 'punnettForm'>
+    <div class="content-container" layout="row">
+      <md-card layout="col" flex="50">
+        <md-card-content>
+          <form name = 'punnettForm'>
+            <div>
+              <h3>Number of Traits:</h3>
+              <md-input-container class="md-input-has-value traits-input-container">
+                <input type="number" name="traitsNum" maxlength="1" ng-model="app.traitsNum" ng-change="app.changeTraitsNum()">
+              </md-input-container>
+            </div>
 
-      <h3>Parent 1:</h3>
-      <h4>Trait Alleles:</h4>
-      <md-input-container class="md-input-has-value allele-input-container">
-        <input type="text" name="allele1" ng-model="app.parent1.traits[0].alleles[0]">
-      </md-input-container>
+            <h3>Parent 1:</h3>
+            <div ng-repeat = "trait in app.parent1.traits">
+              <h4>Trait Alleles:</h4>
+              <md-input-container class="md-input-has-value allele-input-container">
+                <input type="text" name="allele1" maxlength="1" ng-model="trait.alleles[0]">
+              </md-input-container>
 
-      <md-input-container class="md-input-has-value allele-input-container">
-        <input type="text" name="allele2" ng-model="app.parent1.traits[0].alleles[1]">
-      </md-input-container>
+              <md-input-container class="md-input-has-value allele-input-container">
+                <input type="text" name="allele2" maxlength="1" ng-model="trait.alleles[1]">
+              </md-input-container>
 
-      <h3>Parent 2:</h3>
-      <h4>Trait Alleles:</h4>
-      <md-input-container class="md-input-has-value allele-input-container">
-        <input type="text" name="allele1" ng-model="app.parent2.traits[0].alleles[0]">
-      </md-input-container>
+            </div>
 
-      <md-input-container class="md-input-has-value allele-input-container">
-        <input type="text" name="allele2" ng-model="app.parent2.traits[0].alleles[1]">
-      </md-input-container>
+            <h3>Parent 2:</h3>
+            <div ng-repeat = "trait in app.parent2.traits">
+              <h4>Trait Alleles:</h4>
+              <md-input-container class="md-input-has-value allele-input-container">
+                <input type="text" name="allele1" maxlength="1" ng-model="trait.alleles[0]">
+              </md-input-container>
 
-      <md-button type="submit" class="btn btn-primary" ng-click="app.assignAlleles()">Submit</md-button>
+              <md-input-container class="md-input-has-value allele-input-container">
+                <input type="text" name="allele2" maxlength="1" ng-model="trait.alleles[1]">
+              </md-input-container>
+            </div>
 
-    </form>
+
+            <md-button type="submit" class="btn btn-primary" ng-click="app.submitClick()" ng-disabled="punnettForm.$invalid">Submit</md-button>
+
+          </form>
+        </md-card-content>
+      </md-card>
 
 
-<div class="gridListdemoBasicUsage">
-    <h3>Phenotypes:</h3>
-    <md-grid-list md-cols="2" md-row-height="1:1" md-gutter="10px" >
+      <md-card layout="column" flex="50">
+        <md-card-content>
 
-        <md-grid-tile class="gray" md-colspan="1" md-rowspan="1">
-          <div>
-            <h1>{{ app.position1 }}</h1>
+
+          <div class="gridListdemoBasicUsage">
+            <md-grid-list md-cols= "{{ app.colNum }}" md-row-height="1:1" md-gutter="8px" >
+
+                <md-grid-tile class="green" ng-repeat="tile in app.tiles" md-colspan="1" md-rowspan="1">
+                  <div>
+                  </div>
+                </md-grid-tile>
+
+                <!-- <md-grid-tile class="" md-colspan="1" md-rowspan="1">
+                  <div>
+                    <h1>{{ app.parent1.traits[0].alleles[0] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="" md-colspan="1" md-rowspan="1">
+                  <div>
+                    <h1>{{ app.parent1.traits[0].alleles[1] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="" md-colspan="1" md-rowspan="1">
+
+                  <div>
+                    <h1>{{ app.parent2.traits[0].alleles[0] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="green" md-colspan="1" md-rowspan="1">
+                  <div>
+                    <h1>{{ app.positions[0] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="yellow" md-colspan="1" md-rowspan="1">
+                  <div>
+                    <h1>{{ app.positions[2] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="" md-colspan="1" md-rowspan="1">
+
+                  <div>
+                    <h1>{{ app.parent2.traits[0].alleles[1] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="green" md-colspan="1" md-rowspan="1">
+                  <div>
+                    <h1>{{ app.positions[1] }}</h1>
+                  </div>
+                </md-grid-tile>
+
+                <md-grid-tile class="yellow" md-colspan="1" md-rowspan="1">
+                  <div>
+                    <h1>{{ app.positions[3] }}</h1>
+                  </div>
+                </md-grid-tile> -->
+
+
+              </md-grid-list>
           </div>
-        </md-grid-tile>
-
-        <md-grid-tile class="green" md-colspan="1" md-rowspan="1">
-          <div>
-            <h1>{{ app.position2 }}</h1>
-          </div>
-        </md-grid-tile>
-
-        <md-grid-tile class="yellow" md-colspan="1" md-rowspan="1">
-          <div>
-            <h1>{{ app.position3 }}</h1>
-          </div>
-        </md-grid-tile>
-
-        <md-grid-tile class="gray" md-colspan="1" md-rowspan="1">
-          <div>
-            <h1>{{ app.position4 }}</h1>
-          </div>
-        </md-grid-tile>
-
-      </md-grid-list>
+        </md-card-content>
+      </md-card>
     </div>
 
 

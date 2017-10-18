@@ -22,47 +22,123 @@ angular.module('appCtrl', [])
     //START
     self.traitsNum = 1;
 
+    var traitSchema = {
+      "traitName" : '',
+      "dominant" : false,
+      "alleles" : ['','']
+    };
+
     self.parent1 = {
-      "traits": [
-        {
-          "traitName" : '',
-          "dominant" : false,
-          "alleles" : ['','']
-        }
-      ]
+      "traits": []
     }
 
     self.parent2 = {
-      "traits": [
-        {
-          "traitName" : '',
-          "dominant" : false,
-          "alleles" : ['','']
-        }
-      ]
+      "traits": []
     }
 
-    self.assignAlleles = function() {
-      self.xAxis = buildAxis(self.parent1.traits[0].alleles);
-      self.yAxis = buildAxis(self.parent2.traits[0].alleles);
+    self.appInit = function() {
+      clearParents();
+      buildParents();
 
-      punnettCalc(self.xAxis, self.yAxis);
+    }
+
+    self.changeTraitsNum = function() {
+      self.appInit();
+      findTotalTiles(self.traitsNum);
+      //console.log(self.parent1.traits);
+    };
+
+    function clearParents() {
+      self.parent1.traits = [];
+      self.parent2.traits = [];
+    }
+
+    // Called by init (onchage traitsnum); populates traits array according to traitsnum
+    function buildParents() {
+      for(var i = 0; i < self.traitsNum; i++) {
+        self.parent1.traits.push(angular.copy(traitSchema));
+        self.parent2.traits.push(angular.copy(traitSchema));
+      }
+    }
+
+    self.submitClick = function() {
+      if ((self.traitsNum < 1) || (self.traitsNum > 5)) {
+        alert("You must choose 1 to 5 traits to calculate.");
+      }
+      else {
+        assignAlleles();
+        //console.log(self.parent1.traits[0].alleles);
+      }
+    };
+
+    function assignAlleles() {
+      var parent1Alleles = [];
+      var parent2Alleles = [];
+
+      for (var i = 0; i < self.traitsNum; i++) {
+        parent1Alleles.push(self.parent1.traits[i].alleles);
+        parent2Alleles.push(self.parent2.traits[i].alleles);
+
+      }
+
+      //console.log(parent1Alleles);
+        buildAxis()
+      //console.log(self.xAxis);
+
+      //punnettCalc(self.xAxis, self.yAxis);
     }
 
     function buildAxis(parent) {
-      var alleles = parent;
 
-      return alleles;
     }
 
     function punnettCalc(x,y) {
-      var xAxis = x;
-      var yAxis = y;
+      var xAxis = x; //(T,t) xAxis[0] + yAxis[0]
+      var yAxis = y; //(t,t)
+
+      self.positions = [];
+
+      self.genotypes = [];
+
+      for(var i = 0; i < xAxis.length; i++) {
+        for(var j = 0; j < yAxis.length; j++) {
+          self.genotypes.push(xAxis[i] + yAxis[j]);
+
+        }
+      }
+
+      //console.log(self.genotypes);
+
 
       self.position1 = xAxis[0] + yAxis[0];
       self.position2 = xAxis[1] + yAxis[0];
       self.position3 = xAxis[0] + yAxis[1];
       self.position4 = xAxis[1] + yAxis[1];
     }
+
+
+    function findTotalTiles(traitsNum) {
+      self.colNum = 0;
+      self.totalTiles = 0;
+
+      if ((traitsNum > 0) & (traitsNum <= 5)) {
+        self.colNum = (2 ** traitsNum); // +1 because of the parent label row and column
+        self.totalTiles = self.colNum ** 2;
+
+        self.tiles = [];
+        for(var i = 0; i < self.totalTiles; i++) {
+          self.tiles.push(i);
+        }
+        
+        console.log("columns: " + self.colNum);
+        console.log("total squares: " + self.totalTiles);
+      }
+      else {
+        //alert("Please choose a number of traits between 1 and 5.");
+      }
+
+    }
+
+    self.appInit();
 
 })
