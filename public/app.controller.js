@@ -39,7 +39,8 @@ angular.module('appCtrl', [])
     self.appInit = function() {
       clearParents();
       buildParents();
-
+      //??? Why did this work? is this fundmentally correct?
+      findTotalTiles(self.traitsNum);
     }
 
     self.changeTraitsNum = function() {
