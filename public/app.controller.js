@@ -46,7 +46,6 @@ angular.module('appCtrl', [])
     self.changeTraitsNum = function() {
       if (self.traitsNum != '') {
         self.appInit();
-        findTotalTiles(self.traitsNum);
         //console.log(self.parent1.traits);
       }
     };
