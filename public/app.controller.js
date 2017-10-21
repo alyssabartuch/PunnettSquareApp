@@ -11,7 +11,7 @@ angular.module('appCtrl', [])
     // Run updateTitle on each state change
     $rootScope.$on('$stateChangeSuccess', self.updateTitle);
 
-	self.toggleLeft = function() {
+	  self.toggleLeft = function() {
     	$mdSidenav('left').toggle();
     }
 
@@ -43,9 +43,11 @@ angular.module('appCtrl', [])
     }
 
     self.changeTraitsNum = function() {
-      self.appInit();
-      findTotalTiles(self.traitsNum);
-      //console.log(self.parent1.traits);
+      if (self.traitsNum != '') {
+        self.appInit();
+        findTotalTiles(self.traitsNum);
+        //console.log(self.parent1.traits);
+      }
     };
 
     function clearParents() {
@@ -81,10 +83,7 @@ angular.module('appCtrl', [])
 
       }
 
-      //console.log(parent1Alleles);
-        buildAxis()
-      //console.log(self.xAxis);
-
+      //buildAxis();
       //punnettCalc(self.xAxis, self.yAxis);
     }
 
@@ -118,18 +117,13 @@ angular.module('appCtrl', [])
 
 
     function findTotalTiles(traitsNum) {
-      self.colNum = 0;
-      self.totalTiles = 0;
+      self.colNum = 2;
+      self.totalTiles = 4;
 
       if ((traitsNum > 0) & (traitsNum <= 5)) {
         self.colNum = (2 ** traitsNum); // +1 because of the parent label row and column
         self.totalTiles = self.colNum ** 2;
 
-        self.tiles = [];
-        for(var i = 0; i < self.totalTiles; i++) {
-          self.tiles.push(i);
-        }
-        
         console.log("columns: " + self.colNum);
         console.log("total squares: " + self.totalTiles);
       }
@@ -137,7 +131,20 @@ angular.module('appCtrl', [])
         //alert("Please choose a number of traits between 1 and 5.");
       }
 
+      self.tiles = createTilesArray(self.totalTiles);
     }
+
+    function createTilesArray(tilesNum) {
+      var tiles = [];
+
+      for(var i = 0; i < tilesNum; i++) {
+        tiles.push(i);
+      }
+
+      return tiles;
+    }
+
+
 
     self.appInit();
 
